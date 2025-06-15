@@ -1,6 +1,11 @@
+import { Suspense, lazy } from "react";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+
+import HeaderSkeleton from "./components/Header/Skeleton";
+
+const Header = lazy(() => import("./containers/Header/Header"));
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +32,20 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <div className="flex flex-col h-screen">
+          <Suspense fallback={<HeaderSkeleton />}>
+            <Header />
+          </Suspense>
+          <div className="flex flex-row items-start justify-center w-full overflow-y-auto">
+            <div className="flex flex-start w-full">
+              <aside className="bg-black flex w-1/5 min-h-screen"></aside>
+
+              <main className="w-11/20">{children}</main>
+
+              <aside className="bg-black flex w-1/4 min-h-screen"></aside>
+            </div>
+          </div>
+        </div>
       </body>
     </html>
   );
