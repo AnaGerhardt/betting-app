@@ -1,7 +1,7 @@
 export type CardsListType = {
   [key: string]: {
-    component: React.FunctionComponent<any>;
-    placeholder: React.FunctionComponent<any>;
+    component: any;
+    placeholder: any;
   };
 };
 

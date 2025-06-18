@@ -1,11 +1,11 @@
 export async function GET() {
   const cards = [
     {
-      urn: 123,
+      urn: "urn:football",
       typename: "FootballCard",
     },
     {
-      urn: 321,
+      urn: "urn:horseracing",
       typename: "HorseRacingCard",
     },
   ];

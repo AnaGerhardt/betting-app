@@ -1,17 +1,19 @@
 import { Suspense } from "react";
 import { CardsListType } from "../../types/card";
 import { CardType } from "../../types/card";
+import FootballCard from "../../containers/Cards/FootballCard/FootballCard";
+import FootballCardSkeleton from "../FootballCard/Skeleton";
 
-export default function HeaderComponent({ urn, typename }: CardType) {
+export default function CardComponent({ urn, typename }: CardType) {
   const cardsList: CardsListType = {
     FootballCard: {
       component: <FootballCard />,
       placeholder: <FootballCardSkeleton />,
     },
-    HorseRacingCard: {
-      component: <HorseRacingCard />,
-      placeholder: <HorseRacingCardSkeleton />,
-    },
+    // HorseRacingCard: {
+    //   component: <HorseRacingCard />,
+    //   placeholder: <HorseRacingCardSkeleton />,
+    // },
   };
 
   const Component = cardsList[typename].component;
@@ -19,7 +21,7 @@ export default function HeaderComponent({ urn, typename }: CardType) {
 
   return (
     <Suspense fallback={<Placeholder />}>
-      <Component urn={urn} />
+      <Component key={urn} />
     </Suspense>
   );
 }
