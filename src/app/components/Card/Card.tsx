@@ -1,14 +1,15 @@
-import { Suspense } from "react";
-import { CardsListType } from "../../types/card";
-import { CardType } from "../../types/card";
-import FootballCard from "../../containers/Cards/FootballCard/FootballCard";
-import FootballCardSkeleton from "../FootballCard/Skeleton";
+import { Suspense, lazy } from "react";
+import { CardType, CardsListType } from "../../types/card";
+import Placeholder from "../../components/Card/Skeleton";
+
+const FootballCard = lazy(
+  () => import("../../containers/Cards/FootballCard/FootballCard")
+);
 
 export default function CardComponent({ urn, typename }: CardType) {
   const cardsList: CardsListType = {
     FootballCard: {
-      component: <FootballCard />,
-      placeholder: <FootballCardSkeleton />,
+      component: FootballCard,
     },
     // HorseRacingCard: {
     //   component: <HorseRacingCard />,
@@ -17,7 +18,6 @@ export default function CardComponent({ urn, typename }: CardType) {
   };
 
   const Component = cardsList[typename].component;
-  const Placeholder = cardsList[typename].placeholder;
 
   return (
     <Suspense fallback={<Placeholder />}>

@@ -4,23 +4,29 @@ export default function Matches({ ...match }: MatchType) {
   const { name, date, odds, urn } = match;
   const { firstTeam, draw, secondTeam } = odds;
 
-  const day =
-    new Date(date).getDay() +
-    " " +
-    new Date(date).toLocaleString("default", { month: "short" });
-  const time = new Date(date).getHours + ":" + new Date(date).getMinutes();
+  const dateObj = new Date(date);
+  const day = dateObj.getDate();
+  const month = dateObj.toLocaleString("default", { month: "short" });
+  const time = dateObj.getHours() + ":" + dateObj.getMinutes();
 
   return (
-    <div key={urn} className="flex">
-      <span>{name}</span>
-      <div className="flex flex-col">
-        <div className="flex">
-          <span>{day}</span>
+    <div
+      key={urn}
+      className="flex justify-between p-2 [&:not(:last-child)]:border-b-2 border-gray-200"
+    >
+      <span className="self-center">{name}</span>
+      <div className="flex gap-x-2">
+        <div className="flex flex-col text-xs font-bold justify-center text-right">
+          <span>{day + " " + month}</span>
           <span>{time}</span>
         </div>
-        <button>{firstTeam}</button>
-        <button>{draw}</button>
-        <button>{secondTeam}</button>
+        <div className="flex gap-x-[1px]">
+          {[firstTeam, draw, secondTeam].map((text, i) => (
+            <button key={i} className="bet-button">
+              {text}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

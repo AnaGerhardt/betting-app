@@ -5,6 +5,12 @@
   --foreground: #171717;
 }
 
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -36,8 +42,15 @@
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .bet-button {
+    background-color: green;
+    font-weight: bold;
+    color: white;
+    border-radius: 4px;
+    padding: var(--spacing-6);
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+  }
 }

@@ -1,6 +1,6 @@
 export async function GET() {
   const header = {
-    title: "Welcome to Betting",
+    title: "Feeling lucky today?",
     slogan: "Place your bet!",
   };
 

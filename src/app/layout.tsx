@@ -32,17 +32,17 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="flex flex-col h-screen">
+        <div className="flex flex-col h-screen bg-gray-200">
           <Suspense fallback={<HeaderSkeleton />}>
             <Header />
           </Suspense>
           <div className="flex flex-row items-start justify-center w-full overflow-y-auto">
-            <div className="flex flex-start w-full">
-              <aside className="bg-black flex w-1/5 min-h-screen"></aside>
+            <div className="flex flex-start w-full mx-3 my-6">
+              <aside className="flex w-1/5 min-h-screen"></aside>
 
-              <main className="w-11/20">{children}</main>
+              <main className="w-11/20 rounded-md mx-6">{children}</main>
 
-              <aside className="bg-black flex w-1/4 min-h-screen"></aside>
+              <aside className="bg-white flex w-1/4 min-h-screen rounded-md"></aside>
             </div>
           </div>
         </div>

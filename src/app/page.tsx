@@ -9,9 +9,10 @@ export default async function Home() {
 
   return (
     <>
-      {homeContent.cards.map((card) => (
-        <Card urn={card.urn} typename={card.typename} />
-      ))}
+      {homeContent.cards.map((card) => {
+        const { urn, typename } = card;
+        return <Card key={urn} urn={urn} typename={typename} />;
+      })}
     </>
   );
 }
