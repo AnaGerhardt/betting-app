@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 import HeaderSkeleton from "./components/Header/Skeleton";
+import Betslip from "./components/Betslip/Betslip";
 
 const Header = lazy(() => import("./containers/Header/Header"));
 
@@ -36,13 +37,13 @@ export default function RootLayout({
           <Suspense fallback={<HeaderSkeleton />}>
             <Header />
           </Suspense>
-          <div className="flex flex-row items-start justify-center w-full overflow-y-auto">
+          <div className="flex flex-row items-start justify-center w-full overflow-y-auto px-40">
             <div className="flex flex-start w-full mx-3 my-6">
               <aside className="flex w-1/5 min-h-screen"></aside>
 
               <main className="w-11/20 rounded-md mx-6">{children}</main>
 
-              <aside className="bg-white flex w-1/4 min-h-screen rounded-md"></aside>
+              <Betslip />
             </div>
           </div>
         </div>

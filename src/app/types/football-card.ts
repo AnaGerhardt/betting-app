@@ -1,15 +1,4 @@
-type OddsType = {
-  firstTeam: string;
-  draw: string;
-  secondTeam: string;
-};
-
-export type MatchType = {
-  urn: string;
-  name: string;
-  date: string;
-  odds: OddsType;
-};
+import type { CompetitorType, MatchType } from "./bets";
 
 type CompetitionsType = {
   urn: string;

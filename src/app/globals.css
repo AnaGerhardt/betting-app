@@ -43,8 +43,8 @@ body {
 }
 
 @layer components {
-  .bet-button {
-    background-color: green;
+  .bet-button,
+  .bet-button--selected {
     font-weight: bold;
     color: white;
     border-radius: 4px;
@@ -52,5 +52,13 @@ body {
     height: 50px;
     width: 50px;
     cursor: pointer;
+  }
+
+  .bet-button {
+    background-color: green;
+  }
+
+  .bet-button--selected {
+    background-color: darkgreen;
   }
 }

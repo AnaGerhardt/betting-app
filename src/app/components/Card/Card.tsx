@@ -11,10 +11,6 @@ export default function CardComponent({ urn, typename }: CardType) {
     FootballCard: {
       component: FootballCard,
     },
-    // HorseRacingCard: {
-    //   component: <HorseRacingCard />,
-    //   placeholder: <HorseRacingCardSkeleton />,
-    // },
   };
 
   const Component = cardsList[typename].component;

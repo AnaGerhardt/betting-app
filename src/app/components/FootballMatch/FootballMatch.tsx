@@ -1,13 +1,36 @@
-import type { MatchType } from "@/app/types/football-card";
+"use client";
+
+import { useState } from "react";
+import useStore from "@/app/store/store";
+import type { BetType, CompetitorType, MatchType } from "@/app/types/bets";
 
 export default function Matches({ ...match }: MatchType) {
-  const { name, date, odds, urn } = match;
-  const { firstTeam, draw, secondTeam } = odds;
+  const { name, date, competitors, urn } = match;
 
   const dateObj = new Date(date);
   const day = dateObj.getDate();
   const month = dateObj.toLocaleString("default", { month: "short" });
   const time = dateObj.getHours() + ":" + dateObj.getMinutes();
+
+  const [selectedBets, setSelectedBets] = useState<string[]>([]);
+  const store = useStore();
+
+  const isBetSelected = (urn: string) => {
+    return selectedBets.includes(urn);
+  };
+
+  const selectBet = (competitor: CompetitorType) => {
+    const { urn } = competitor;
+    const matchName = match.name;
+
+    if (isBetSelected(urn)) {
+      setSelectedBets(selectedBets.filter((bet) => bet !== urn));
+      store.removeBet({ matchName, competitor });
+    } else {
+      setSelectedBets([...selectedBets, urn]);
+      store.addBet({ matchName, competitor });
+    }
+  };
 
   return (
     <div
@@ -21,11 +44,20 @@ export default function Matches({ ...match }: MatchType) {
           <span>{time}</span>
         </div>
         <div className="flex gap-x-[1px]">
-          {[firstTeam, draw, secondTeam].map((text, i) => (
-            <button key={i} className="bet-button">
-              {text}
-            </button>
-          ))}
+          {competitors.map((competitor) => {
+            const { urn, odds } = competitor;
+            return (
+              <button
+                key={urn}
+                className={
+                  isBetSelected(urn) ? "bet-button--selected" : "bet-button"
+                }
+                onClick={() => selectBet(competitor)}
+              >
+                {odds}
+              </button>
+            );
+          })}
         </div>
       </div>
     </div>
