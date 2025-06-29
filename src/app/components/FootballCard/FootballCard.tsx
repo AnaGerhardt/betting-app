@@ -13,7 +13,7 @@ const FootballCardComponent = ({ competitions }: FootballCardType) => {
               <span>{title}</span>
             </header>
             {matches.map((match) => (
-              <FootballMatch key={urn} {...match} />
+              <FootballMatch key={match.urn} {...match} />
             ))}
           </article>
         );

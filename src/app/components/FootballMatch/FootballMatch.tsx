@@ -1,8 +1,5 @@
-"use client";
-
-import { useState } from "react";
-import useStore from "@/app/store/store";
-import type { BetType, CompetitorType, MatchType } from "@/app/types/bets";
+import type { MatchType } from "@/app/types/bets";
+import BetButton from "../BetButton/BetButton";
 
 export default function Matches({ ...match }: MatchType) {
   const { name, date, competitors, urn } = match;
@@ -11,26 +8,6 @@ export default function Matches({ ...match }: MatchType) {
   const day = dateObj.getDate();
   const month = dateObj.toLocaleString("default", { month: "short" });
   const time = dateObj.getHours() + ":" + dateObj.getMinutes();
-
-  const [selectedBets, setSelectedBets] = useState<string[]>([]);
-  const store = useStore();
-
-  const isBetSelected = (urn: string) => {
-    return selectedBets.includes(urn);
-  };
-
-  const selectBet = (competitor: CompetitorType) => {
-    const { urn } = competitor;
-    const matchName = match.name;
-
-    if (isBetSelected(urn)) {
-      setSelectedBets(selectedBets.filter((bet) => bet !== urn));
-      store.removeBet({ matchName, competitor });
-    } else {
-      setSelectedBets([...selectedBets, urn]);
-      store.addBet({ matchName, competitor });
-    }
-  };
 
   return (
     <div
@@ -45,17 +22,12 @@ export default function Matches({ ...match }: MatchType) {
         </div>
         <div className="flex gap-x-[1px]">
           {competitors.map((competitor) => {
-            const { urn, odds } = competitor;
             return (
-              <button
-                key={urn}
-                className={
-                  isBetSelected(urn) ? "bet-button--selected" : "bet-button"
-                }
-                onClick={() => selectBet(competitor)}
-              >
-                {odds}
-              </button>
+              <BetButton
+                key={competitor.urn}
+                matchName={match.name}
+                competitor={competitor}
+              />
             );
           })}
         </div>
