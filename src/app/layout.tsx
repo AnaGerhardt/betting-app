@@ -5,6 +5,7 @@ import "./globals.css";
 
 import HeaderSkeleton from "./components/Header/Skeleton";
 import Betslip from "./components/Betslip/Betslip";
+import Menu from "./components/Menu/Menu";
 
 const Header = lazy(() => import("./containers/Header/Header"));
 
@@ -39,7 +40,9 @@ export default function RootLayout({
           </Suspense>
           <div className="flex flex-row items-start justify-center w-full overflow-y-auto px-40">
             <div className="flex flex-start w-full mx-3 my-6">
-              <aside className="flex w-1/5 min-h-screen"></aside>
+              <aside className="flex w-1/5 min-h-screen">
+                <Menu />
+              </aside>
 
               <main className="w-11/20 rounded-md mx-6">{children}</main>
 
