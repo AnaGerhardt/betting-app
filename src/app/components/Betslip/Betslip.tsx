@@ -4,7 +4,7 @@ import useStore from "@/app/store/store";
 import BetComponent from "./BetslipBet";
 
 const Betslip = () => {
-  const bets = useStore((state) => state.bets);
+  const bets = useStore((state) => state.betslipBets);
 
   return (
     <section className="bg-white flex w-1/4 min-h-screen rounded-md flex flex-col py-4 px-3 gap-y-5">

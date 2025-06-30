@@ -8,7 +8,7 @@ import type { BetType } from "@/app/types/bets";
 const BetslipBet = ({ matchName, competitor }: BetType) => {
   const { urn, name, odds } = competitor;
 
-  const removeBet = useStore((state) => state.removeBet);
+  const removeBet = useStore((state) => state.removeBetFromBetslip);
   const [stake, setStake] = useState("");
 
   return (

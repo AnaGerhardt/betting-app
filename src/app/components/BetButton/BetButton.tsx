@@ -9,14 +9,14 @@ const BetButton = ({ matchName, competitor }: BetType) => {
   const store = useStore();
 
   const isBetSelected = (urn: string) => {
-    return !!store.bets.find((b) => b.competitor.urn === urn);
+    return !!store.betslipBets.find((b) => b.competitor.urn === urn);
   };
 
   const selectBet = (competitor: CompetitorType) => {
     if (isBetSelected(urn)) {
-      store.removeBet({ matchName, competitor });
+      store.removeBetFromBetslip({ matchName, competitor });
     } else {
-      store.addBet({ matchName, competitor });
+      store.addBetToBetslip({ matchName, competitor });
     }
   };
 

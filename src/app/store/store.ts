@@ -3,19 +3,20 @@ import { persist } from "zustand/middleware";
 import { BetType } from "../types/bets";
 
 interface StoreState {
-  bets: BetType[];
-  addBet: (bet: BetType) => void;
-  removeBet: (bet: BetType) => void;
+  betslipBets: BetType[];
+  addBetToBetslip: (bet: BetType) => void;
+  removeBetFromBetslip: (bet: BetType) => void;
 }
 
 const useStore = create<StoreState>()(
   persist(
     (set) => ({
-      bets: [],
-      addBet: (bet) => set((state) => ({ bets: [...state.bets, bet] })),
-      removeBet: (bet) =>
+      betslipBets: [],
+      addBetToBetslip: (bet) =>
+        set((state) => ({ betslipBets: [...state.betslipBets, bet] })),
+      removeBetFromBetslip: (bet) =>
         set((state) => ({
-          bets: state.bets.filter(
+          betslipBets: state.betslipBets.filter(
             (b) => b.competitor.urn !== bet.competitor.urn
           ),
         })),
