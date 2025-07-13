@@ -1,7 +1,7 @@
-import type { FootballCardType } from "@/app/types/football-card";
 import FootballMatch from "../FootballMatch/FootballMatch";
+import competitions from "./FootballCard.data";
 
-const FootballCardComponent = ({ competitions }: FootballCardType) => {
+const FootballCardComponent = () => {
   return (
     <section className="flex bg-white rounded-md flex-col">
       <h3 className="p-2">Football</h3>

@@ -1,6 +1,6 @@
 export type CardsListType = {
   [key: string]: {
-    component: React.LazyExoticComponent<() => Promise<React.JSX.Element>>;
+    component: () => React.JSX.Element;
   };
 };
 

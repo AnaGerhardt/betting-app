@@ -1,7 +1,7 @@
 "use client";
 
 import useStore from "@/app/store/store";
-import type { BetType, CompetitorType } from "@/app/types/bets";
+import type { BetType, CompetitorType } from "@/app/store/store.types";
 
 const BetButton = ({ matchName, competitor }: BetType) => {
   const { urn, odds } = competitor;

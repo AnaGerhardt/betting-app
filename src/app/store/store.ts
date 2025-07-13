@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { BetType } from "../types/bets";
+import { BetType } from "./store.types";
 
 interface StoreState {
   betslipBets: BetType[];

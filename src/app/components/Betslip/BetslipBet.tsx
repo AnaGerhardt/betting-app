@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import useStore from "@/app/store/store";
-import type { BetType } from "@/app/types/bets";
+import type { BetType } from "@/app/store/store.types";
 
 const BetslipBet = ({ matchName, competitor }: BetType) => {
   const { urn, name, odds } = competitor;

@@ -1,10 +1,5 @@
-import { Suspense, lazy } from "react";
-import { CardType, CardsListType } from "../../types/card";
-import Placeholder from "../../components/Card/Skeleton";
-
-const FootballCard = lazy(
-  () => import("../../containers/Cards/FootballCard/FootballCard")
-);
+import { CardType, CardsListType } from "./Card.types";
+import FootballCard from "../FootballCard/FootballCard";
 
 export default function CardComponent({ urn, typename }: CardType) {
   const cardsList: CardsListType = {
@@ -15,9 +10,5 @@ export default function CardComponent({ urn, typename }: CardType) {
 
   const Component = cardsList[typename].component;
 
-  return (
-    <Suspense fallback={<Placeholder />}>
-      <Component key={urn} />
-    </Suspense>
-  );
+  return <Component key={urn} />;
 }

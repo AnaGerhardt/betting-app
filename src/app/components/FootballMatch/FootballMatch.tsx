@@ -1,4 +1,4 @@
-import type { MatchType } from "@/app/types/bets";
+import type { MatchType } from "@/app/store/store.types";
 import BetButton from "../BetButton/BetButton";
 
 export default function Matches({ ...match }: MatchType) {

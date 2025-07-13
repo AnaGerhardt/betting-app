@@ -1,6 +1,11 @@
-import { HeaderType } from "../../types/header";
+export default function HeaderComponent() {
+  const header = {
+    title: "Feeling lucky today?",
+    slogan: "Place your bet!",
+  };
 
-export default function HeaderComponent({ title, slogan }: HeaderType) {
+  const { title, slogan } = header;
+
   return (
     <header className="bg-green-600/50 w-screen p-2 flex flex-col items-center leading-6">
       <h2>{title}</h2>
